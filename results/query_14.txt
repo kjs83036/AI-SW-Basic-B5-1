@@ -1,0 +1,8 @@
+=== -- [Q14] 주문 ID 3번의 상태를 결제완료(PAID)로 변경 (UPDATE) ===
+[SQL]:
+UPDATE orders
+SET status = 'PAID'
+WHERE id = 3;
+
+[EXECUTION RESULT]:
+SUCCESS: 1 row(s) affected.

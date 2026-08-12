@@ -1,0 +1,18 @@
+=== -- [QB01A] 보너스 1: 조인 방식 - 주문 내역이 존재하는 매장 목록 조회 (INNER JOIN) ===
+[SQL]:
+SELECT DISTINCT s.id, s.name AS store_name, s.phone
+FROM store s
+INNER JOIN orders o ON s.id = o.store_id
+ORDER BY s.id ASC;
+
+[EXECUTION RESULT]:
+id | store_name | phone
+-----------------------
+1 | 성수 수제버거 | 02-123-4567
+2 | 강남 델리 파스타 | 02-987-6543
+3 | 홍대 덮밥 연구소 | 02-111-2222
+4 | 이태원 멕시칸 타코 | 02-444-5555
+5 | 혜화 라멘 공방 | 02-777-8888
+6 | 여의도 스시 집 | 02-333-4444
+7 | 신촌 떡볶이 천국 | 02-555-6666
+(Total rows: 7)

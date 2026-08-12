@@ -1,0 +1,19 @@
+=== -- [Q09] 매장별 평균 메뉴 가격 및 등록된 메뉴 수 집계 (AVG, COUNT, GROUP BY) ===
+[SQL]:
+SELECT s.name AS store_name, COUNT(m.id) AS menu_count, AVG(m.price) AS avg_menu_price
+FROM store s
+INNER JOIN menu m ON s.id = m.store_id
+GROUP BY s.id, s.name;
+
+[EXECUTION RESULT]:
+store_name | menu_count | avg_menu_price
+----------------------------------------
+성수 수제버거 | 3 | 8100.0
+강남 델리 파스타 | 3 | 11100.0
+홍대 덮밥 연구소 | 2 | 13000.0
+이태원 멕시칸 타코 | 2 | 10250.0
+혜화 라멘 공방 | 2 | 5750.0
+여의도 스시 집 | 1 | 18000.0
+신촌 떡볶이 천국 | 1 | 11000.0
+압구정 브런치 카페 | 1 | 15000.0
+(Total rows: 8)

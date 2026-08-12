@@ -1,0 +1,24 @@
+=== -- [QB03C] 보너스 3 지표 3: 매장별 주문 취소율 및 취소 손실 금액 분석 (운영/리스크 지표) ===
+[SQL]:
+SELECT 
+    s.name AS store_name,
+    COUNT(o.id) AS total_orders,
+    SUM(CASE WHEN o.status = 'CANCELLED' THEN 1 ELSE 0 END) AS cancelled_orders,
+    ROUND(CAST(SUM(CASE WHEN o.status = 'CANCELLED' THEN 1 ELSE 0 END) AS FLOAT) / COUNT(o.id) * 100, 1) || '%' AS cancellation_rate,
+    SUM(CASE WHEN o.status = 'CANCELLED' THEN o.total_amount ELSE 0 END) AS lost_revenue
+FROM store s
+INNER JOIN orders o ON s.id = o.store_id
+GROUP BY s.id, s.name
+ORDER BY cancelled_orders DESC, lost_revenue DESC;
+
+[EXECUTION RESULT]:
+store_name | total_orders | cancelled_orders | cancellation_rate | lost_revenue
+-------------------------------------------------------------------------------
+홍대 덮밥 연구소 | 2 | 1 | 50.0% | 12500
+성수 수제버거 | 4 | 1 | 25.0% | 11900
+강남 델리 파스타 | 3 | 0 | 0.0% | 0
+이태원 멕시칸 타코 | 2 | 0 | 0.0% | 0
+혜화 라멘 공방 | 2 | 0 | 0.0% | 0
+여의도 스시 집 | 1 | 0 | 0.0% | 0
+신촌 떡볶이 천국 | 1 | 0 | 0.0% | 0
+(Total rows: 7)

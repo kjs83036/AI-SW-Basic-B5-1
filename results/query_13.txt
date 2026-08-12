@@ -1,0 +1,17 @@
+=== -- [Q13] 주문 내역이 0건인 미활성 매장 목록 조회 (다중행 서브쿼리) ===
+[SQL]:
+SELECT id, name, business_number, phone
+FROM store
+WHERE id NOT IN (SELECT DISTINCT store_id FROM orders);
+
+-- ------------------------------------------
+-- 5. 데이터 수정 및 삭제 (2개 이상: UPDATE, DELETE)
+-- ------------------------------------------;
+
+[EXECUTION RESULT]:
+id | name | business_number | phone
+-----------------------------------
+8 | 압구정 브런치 카페 | 888-22-33333 | 02-888-9999
+9 | 건대 피자 팩토리 | 999-33-44444 | 02-999-0000
+10 | 잠실 돈까스 하우스 | 000-44-55555 | 02-000-1111
+(Total rows: 3)

@@ -1,0 +1,20 @@
+=== -- [Q10] 매장별 결제 완료(PAID) 누적 매출액 집계 (SUM, GROUP BY, ORDER BY) ===
+[SQL]:
+SELECT s.name AS store_name, SUM(o.total_amount) AS total_sales
+FROM store s
+INNER JOIN orders o ON s.id = o.store_id
+WHERE o.status = 'PAID'
+GROUP BY s.id, s.name
+ORDER BY total_sales DESC;
+
+[EXECUTION RESULT]:
+store_name | total_sales
+------------------------
+강남 델리 파스타 | 41300
+성수 수제버거 | 36200
+여의도 스시 집 | 36000
+혜화 라멘 공방 | 29500
+홍대 덮밥 연구소 | 26000
+이태원 멕시칸 타코 | 20500
+신촌 떡볶이 천국 | 11000
+(Total rows: 7)

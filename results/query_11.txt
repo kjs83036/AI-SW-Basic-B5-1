@@ -1,0 +1,23 @@
+=== -- [Q11] 누적 매출액이 20,000원 이상인 우수 매장 집계 (SUM, GROUP BY, HAVING) ===
+[SQL]:
+SELECT s.name AS store_name, SUM(o.total_amount) AS total_sales
+FROM store s
+INNER JOIN orders o ON s.id = o.store_id
+WHERE o.status = 'PAID'
+GROUP BY s.id, s.name
+HAVING SUM(o.total_amount) >= 20000;
+
+-- ------------------------------------------
+-- 4. 서브쿼리 (2개 이상)
+-- ------------------------------------------;
+
+[EXECUTION RESULT]:
+store_name | total_sales
+------------------------
+성수 수제버거 | 36200
+강남 델리 파스타 | 41300
+홍대 덮밥 연구소 | 26000
+이태원 멕시칸 타코 | 20500
+혜화 라멘 공방 | 29500
+여의도 스시 집 | 36000
+(Total rows: 6)

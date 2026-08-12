@@ -1,0 +1,16 @@
+=== -- [Q08] 메뉴는 등록되었으나 주문 내역이 단 한 번도 없는 메뉴 조회 (LEFT JOIN & NULL) ===
+[SQL]:
+SELECT m.id, m.name AS menu_name, m.price, m.category
+FROM menu m
+LEFT JOIN order_item oi ON m.id = oi.menu_id
+WHERE oi.id IS NULL;
+
+-- ------------------------------------------
+-- 3. 집계 쿼리 (3개 이상: COUNT, SUM, AVG + GROUP BY, HAVING)
+-- ------------------------------------------;
+
+[EXECUTION RESULT]:
+id | menu_name | price | category
+---------------------------------
+115 | 에그 베네딕트 | 15000 | 메인
+(Total rows: 1)

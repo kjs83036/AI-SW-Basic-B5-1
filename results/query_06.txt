@@ -1,0 +1,25 @@
+=== -- [Q06] 주문 내역과 주문이 발생한 식당 정보 결합 조회 (INNER JOIN) ===
+[SQL]:
+SELECT o.id AS order_id, s.name AS store_name, o.table_number, o.total_amount, o.status
+FROM orders o
+INNER JOIN store s ON o.store_id = s.id;
+
+[EXECUTION RESULT]:
+order_id | store_name | table_number | total_amount | status
+------------------------------------------------------------
+1 | 성수 수제버거 | 1 | 12400 | PAID
+2 | 성수 수제버거 | 2 | 23800 | PAID
+3 | 성수 수제버거 | 3 | 12400 | ORDERED
+4 | 강남 델리 파스타 | 1 | 18400 | PAID
+5 | 강남 델리 파스타 | 2 | 29800 | COOKING
+6 | 강남 델리 파스타 | 3 | 22900 | PAID
+7 | 홍대 덮밥 연구소 | 1 | 26000 | PAID
+8 | 홍대 덮밥 연구소 | 2 | 12500 | CANCELLED
+9 | 이태원 멕시칸 타코 | 1 | 20500 | PAID
+10 | 이태원 멕시칸 타코 | 2 | 19000 | ORDERED
+11 | 혜화 라멘 공방 | 1 | 11500 | PAID
+12 | 혜화 라멘 공방 | 2 | 18000 | PAID
+13 | 여의도 스시 집 | 1 | 36000 | PAID
+14 | 신촌 떡볶이 천국 | 1 | 11000 | PAID
+15 | 성수 수제버거 | 4 | 11900 | CANCELLED
+(Total rows: 15)

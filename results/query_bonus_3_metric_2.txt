@@ -1,0 +1,21 @@
+=== -- [QB03B] 보너스 3 지표 2: 전체 매장 통합 가장 많이 판매된 TOP 3 인기 메뉴 (상품성 분석 지표) ===
+[SQL]:
+SELECT 
+    m.name AS menu_name, 
+    s.name AS store_name, 
+    SUM(oi.quantity) AS total_quantity_sold,
+    SUM(oi.subtotal_price) AS total_menu_revenue
+FROM order_item oi
+INNER JOIN menu m ON oi.menu_id = m.id
+INNER JOIN store s ON m.store_id = s.id
+GROUP BY m.id, m.name, s.name
+ORDER BY total_quantity_sold DESC, total_menu_revenue DESC
+LIMIT 3;
+
+[EXECUTION RESULT]:
+menu_name | store_name | total_quantity_sold | total_menu_revenue
+-----------------------------------------------------------------
+청포도 에이드 | 강남 델리 파스타 | 4 | 18000
+소고기 타코 | 이태원 멕시칸 타코 | 3 | 28500
+돈코츠 라멘 | 혜화 라멘 공방 | 3 | 27000
+(Total rows: 3)
